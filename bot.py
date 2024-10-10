@@ -54,44 +54,27 @@ class NotPixTod:
         ]
         self.block = {
             "#3690EA": [
-                [ci(448, 595), ci(470, 595)],
-                [ci(448, 594), ci(470, 594)],
-                [ci(448, 593), ci(470, 593)],
-                [ci(448, 592), ci(470, 592)],
-                [ci(448, 591), ci(470, 591)],
-                [ci(448, 590), ci(470, 590)],
-                [ci(448, 589), ci(470, 589)],
-                [ci(448, 588), ci(470, 588)],
-                [ci(448, 587), ci(470, 587)],
-                [ci(448, 586), ci(470, 586)],
-                [ci(448, 585), ci(470, 585)],
-                [ci(448, 584), ci(470, 584)],
-                [ci(448, 583), ci(470, 583)],
-                [ci(448, 582), ci(470, 582)],
-                [ci(448, 581), ci(470, 581)],
-                [ci(532, 593), ci(595, 593)],
-                [ci(532, 592), ci(595, 592)],
-                [ci(532, 591), ci(595, 591)],
-                [ci(532, 590), ci(595, 590)],
-                [ci(532, 589), ci(595, 589)],
-                [ci(532, 588), ci(595, 588)],
-                [ci(532, 587), ci(595, 587)],
-                [ci(532, 586), ci(595, 586)],
-                [ci(532, 585), ci(595, 585)],
-                [ci(532, 584), ci(595, 584)],
-                [ci(532, 583), ci(595, 583)],
-                [ci(532, 582), ci(595, 582)],
-                [ci(532, 581), ci(595, 581)],
-                [ci(532, 580), ci(595, 580)],
-                [ci(532, 579), ci(595, 579)],
-                [ci(532, 578), ci(595, 578)],
-                [ci(532, 577), ci(595, 577)],
-                [ci(532, 576), ci(595, 576)],
-                [ci(532, 575), ci(595, 575)],
-                [ci(532, 574), ci(595, 574)],
-                [ci(532, 573), ci(595, 573)],
-                [ci(532, 572), ci(595, 572)],
-                [ci(532, 571), ci(595, 571)],
+                [ci(431, 452), ci(431, 452)],
+                [ci(432, 452), ci(432, 452)],
+                [ci(433, 452), ci(433, 452)],
+                [ci(434, 452), ci(434, 452)],
+                [ci(435, 452), ci(435, 452)],
+                [ci(436, 452), ci(436, 452)],
+                [ci(437, 452), ci(437, 452)],
+                [ci(438, 452), ci(438, 452)],
+                [ci(439, 452), ci(439, 452)],
+                [ci(440, 452), ci(440, 452)],
+                [ci(441, 452), ci(441, 452)],
+                [ci(442, 452), ci(442, 452)],
+                [ci(443, 452), ci(443, 452)],
+                [ci(444, 452), ci(444, 452)],
+                [ci(445, 452), ci(445, 452)],
+                [ci(446, 452), ci(446, 452)],
+                [ci(447, 452), ci(447, 452)],
+                [ci(448, 452), ci(448, 452)],
+                [ci(449, 452), ci(449, 452)],
+                [ci(450, 452), ci(450, 452)],
+                [ci(451, 452), ci(451, 452)],
             ]
         }
 
@@ -241,6 +224,30 @@ def process_accounts(accounts):
         log_message(f"--- NOTPIXELTOT PAKE QUERYTOD: {username} ---", Fore.BLUE)
         notpixtod = NotPixTod(0, [])  # Create an instance of NotPixTod
         main(account, account, notpixtod)  # Pass notpixtod to the main function
+
+
+# Function to extract the username from the URL-encoded init data
+def extract_username_from_initdata(init_data):
+    decoded_data = urllib.parse.unquote(init_data)
+    
+    username_start = decoded_data.find('"username":"') + len('"username":"')
+    username_end = decoded_data.find('"', username_start)
+    
+    if username_start != -1 and username_end != -1:
+        return decoded_data[username_start:username_end]
+    
+    return "Unknown"
+
+# Function to load accounts from data.txt
+def load_accounts_from_file(filename):
+    with open(filename, 'r') as file:
+        accounts = [f"initData {line.strip()}" for line in file if line.strip()]
+    return accounts
+
+if __name__ == "__main__":
+    accounts = load_accounts_from_file('data.txt')
+    process_accounts(accounts)
+tion
 
 
 # Function to extract the username from the URL-encoded init data
